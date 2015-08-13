@@ -13,7 +13,7 @@ final class JsonDecoder
      * Middleware to json decode the request body
      *
      * - content-types: Array of content-type strings in the header that will cause the body to be json decoded
-     * - separator: The separator string used for multiple header values. Defaults to a comma.
+     * - separator: The separator string used for multiple header values. Defaults to a semi-colon.
      *
      * @param array $config
      */
@@ -21,7 +21,7 @@ final class JsonDecoder
     {
         $defaults = [
             'content-types' => ['application/json'],
-            'separator' => ','
+            'separator' => ';'
         ];
         $this->config = array_merge($defaults, $config);
     }
@@ -39,6 +39,7 @@ final class JsonDecoder
             $contentType = array_shift($contentType);
             $types = explode($this->config['separator'], $contentType);
             foreach ($types as $type) {
+                $type = trim($type);
                 if (in_array($type, $this->config['content-types'])) {
                     $jsonDecoded = json_decode($request->getBody()->getContents(), true);
                     $request = $request->withParsedBody($jsonDecoded);

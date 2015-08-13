@@ -27,4 +27,4 @@ Configuration
 `Tonis\JsonDecoder\JsonDecoder` optionally takes an array of options.
 
   * content-types: An array of content types strings that will cause the request body to be json decoded. Default is "application/json".
-  * separator: The separator string used for multiple header values. Defaults to a comma.
+  * separator: The separator string used for multiple header values. Defaults to a semi-colon.
