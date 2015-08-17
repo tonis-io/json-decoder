@@ -18,6 +18,11 @@ Usage
 
 ```php
 $app->add(new \Tonis\JsonDecoder\JsonDecoder())
+
+$app->post('/register', function ($request, $response) {
+ //Within your middleware/routes you can do request->getParsedBody() to get the json decoded data
+ $data = $request->getParsedBody();
+}
 ```
 Make sure to add this at the beginning of your app before any routes can process the request.
 
